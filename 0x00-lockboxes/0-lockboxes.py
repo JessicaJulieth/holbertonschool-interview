@@ -9,7 +9,6 @@ def canUnlockAll(boxes):
             return False
         for j in x:
             nlist.append(j)
-    print(nlist)
     for index, keys in enumerate(boxes):
         if index in nlist or index < k-1:
             return True
