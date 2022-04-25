@@ -18,15 +18,13 @@ Return True if all boxes can be opened, else return False
 def canUnlockAll(boxes):
     """Prototype: def canUnlockAll(boxes)
     """
-    nlist = []
-    k = len(boxes)
-    for x in boxes:
-        if len(x) == 0 and x is not boxes[k-1]:
-            return False
-        for j in x:
-            nlist.append(j)
-    for index, keys in enumerate(boxes):
-        if index in nlist or index < k-1:
-            return True
-        else:
-            return False
+    unlocked = [0]
+    for box_id, box in enumerate(boxes):
+        if not box:
+            continue
+        for key in box:
+            if key < len(boxes) and key not in unlocked and key != box_id:
+                unlocked.append(key)
+    if len(unlocked) == len(boxes):
+        return True
+    return False
