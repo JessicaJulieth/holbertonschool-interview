@@ -28,7 +28,6 @@ def minOperations(n):
         if n % H == 0:
             copyAll += 1
             copie = H
-        else:
             paste += 1
         N = copyAll + paste
         H += copie
