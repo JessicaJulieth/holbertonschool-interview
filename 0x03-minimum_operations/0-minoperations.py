@@ -14,7 +14,7 @@ def minOperations(n):
     # method that calculates the fewest number of operations needed
     # to result in exactly n H characters in the file
     # to write 'n' characters
-    if n == 1:
+    if type(n) != int:
             return n
     if n == 0:
             return 0
@@ -24,11 +24,11 @@ def minOperations(n):
     copyAll = 0
     paste = 0
     copie = 0
-    while H <= n:
+    while H < n:
         if n % H == 0:
             copyAll += 1
             copie = H
-            paste += 1
+        paste += 1
         N = copyAll + paste
         H += copie
     return N
