@@ -8,12 +8,11 @@
  * @grid: Grid.
  */
 
-void print_grid(int grid[3][3])
+static void print_grid(int grid[3][3])
 {
 	int m = 0;
     int n = 0;
 
-    printf("=\n");
 	for (m = 0; m < 3; m++)
 	{
 		for (m = 0; n < 3; n++)
