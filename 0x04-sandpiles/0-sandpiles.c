@@ -8,7 +8,7 @@
  * @grid: Grid.
  */
 
-static void print_grid(int grid[3][3])
+void print_grid(int grid[3][3])
 {
 	int m = 0;
     int n = 0;
@@ -16,7 +16,7 @@ static void print_grid(int grid[3][3])
     printf("=\n");
 	for (m = 0; m < 3; m++)
 	{
-		for (y = 0; n < 3; n++)
+		for (m = 0; n < 3; n++)
 		{
 			if (n)
 				printf(" ");
@@ -62,7 +62,7 @@ void sum_sandpiles(int grid1[3][3], int grid2[3][3])
 	{
 		for (n = 0; n < 3; n++)
 		{
-			c = grid1[m][n] + grid2[m][n];
+			x = grid1[m][n] + grid2[m][n];
 			grid2[m][n] = x;
 			grid1[m][n] = x;
 		}
@@ -97,7 +97,7 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 					grid1[m][n] += 1;
 				if ((n > 0) && (grid2[m][n - 1] > 3))
 					grid1[m][n] += 1;
-				if ((n < 2) &   & (grid2[m][n + 1] > 3))
+				if ((n < 2) && (grid2[m][n + 1] > 3))
 					grid1[m][n] += 1;
 			}
 		}
