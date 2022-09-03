@@ -11,7 +11,7 @@
 static void print_grid(int grid[3][3])
 {
 	int m = 0;
-    int n = 0;
+	int n = 0;
 
 	for (m = 0; m < 3; m++)
 	{
@@ -33,7 +33,7 @@ static void print_grid(int grid[3][3])
 int is_stable(int grid[3][3])
 {
 	int m = 0;
-    int n = 0;
+	int n = 0;
 
 	for (m = 0; m < 3; m++)
 	{
@@ -54,8 +54,8 @@ int is_stable(int grid[3][3])
 void sum_sandpiles(int grid1[3][3], int grid2[3][3])
 {
 	int m = 0;
-    int n = 0;
-    int x = 0;
+	int n = 0;
+	int x = 0;
 
 	for (m = 0; m < 3; m++)
 	{
@@ -76,7 +76,7 @@ void sum_sandpiles(int grid1[3][3], int grid2[3][3])
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
 	int m = 0;
-    int n = 0;
+	int n = 0;
 
 	sum_sandpiles(grid1, grid2);
 
