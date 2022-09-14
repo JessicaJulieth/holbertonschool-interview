@@ -1,121 +1,118 @@
 #include "binary_trees.h"
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <stddef.h>
+#include "stdio.h"
 
 /**
- * binary_size - function that get the size of a binary tree
+ * size - Size of a binary tree
  * @tree: pointer to the root
  * Return: size of the binary tree
  */
 
-int binary_size(const binary_tree_t *tree)
+int size(const binary_tree_t *tree)
 {
-	int x;
+	int X;
 
 	if (tree == NULL)
 		return (0);
-	x = 0;
+	X = 0;
 	if (tree)
-		x = 1;
-	x += binary_size(tree->left);
-	x += binary_size(tree->right);
+		X = 1;
+	X += size(tree->left);
+	X += size(tree->right);
 
-	return (x);
+	return (X);
 }
 
 /**
- * binary_check - Check binary
+ * binary_tree_is_perfect - Checks a tree
  * @tree: Pointer
  * Return: 1 if true or 0 if false
  */
 
-int binary_check(const binary_tree_t *tree)
+int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	int m, n;
+	int p1, p2;
 
 	if (tree == NULL)
 		return (0);
-	m = binary_size(tree->left);
-	n = binary_size(tree->right);
-	if (m == n)
+	p1 = size(tree->left);
+	p2 = size(tree->right);
+	if (p1 == p2)
 		return (1);
 	return (0);
 }
 
 /**
- * sort_Binary - Sorts a binary tree
- * @new: pointer to the root
+ * sort_binary_tree - Sorts a binary tree
+ * @new: Pointer 
  * Return: void function
  */
 
-void sort_binary(heap_t **new)
+void sort_binary_tree(heap_t **new)
 {
-	heap_t *j;
+	heap_t *aux;
 	int old;
 
-	j = *new;
-	while (j->parent != NULL)
+	aux = *new;
+	while (aux->parent != NULL)
 	{
-		if (j->n > j->parent->n)
+		if (aux->n > aux->parent->n)
 		{
-			old = j->n;
-			j->n = j->parent->n;
-			j->parent->n = old;
-			*new = j->parent;
+			old = aux->n;
+			aux->n = aux->parent->n;
+			aux->parent->n = old;
+			*new = aux->parent;
 		}
-		j = j->parent;
+		aux = aux->parent;
 	}
 }
 
 /**
- * nd_Add - function that finds and return the parent address of a node
+ * parent_address - Finds and return the parent address of a node
  * @root: Pointer
  * Return: Pointer
  */
 
-heap_t *nd_Add(heap_t *root)
+heap_t *parent_address(heap_t *root)
 {
-	if (binary_size(root->left) == 0 || binary_size(root->right) == 0)
+	if (size(root->left) == 0 || size(root->right) == 0)
 		return (root);
-	else if (binary_check(root->left) == 1 &&
-			 binary_check(root->right) == 1 &&
-			 binary_size(root->left) == binary_size(root->right))
-		return (nd_Add(root->left));
-	else if ((binary_size(root->left) > binary_size(root->right)) &&
-			 binary_check(root->left) == 0)
-		return (nd_Add(root->left));
-	else if ((binary_size(root->left) > binary_size(root->right)) &&
-			 binary_check(root->left) == 1)
-		return (nd_Add(root->right));
+	else if (binary_tree_is_perfect(root->left) == 1 &&
+			 binary_tree_is_perfect(root->right) == 1 &&
+			 size(root->left) == size(root->right))
+		return (parent_address(root->left));
+	else if ((size(root->left) > size(root->right)) &&
+			 binary_tree_is_perfect(root->left) == 0)
+		return (parent_address(root->left));
+	else if ((size(root->left) > size(root->right)) &&
+			 binary_tree_is_perfect(root->left) == 1)
+		return (parent_address(root->right));
 	return (root);
 }
 
 /**
- * heap_insert - Inserts value to binary heap
- * @root: Pointer 
- * @value: value
+ * heap_insert - Inserts a value into a Max Binary Heap
+ * @root: double pointer to the root node of the Heap
+ * @value: value of the node to be inserted
  * Return: Pointer
  */
 
 heap_t *heap_insert(heap_t **root, int value)
 {
-	heap_t *new, *nd;
+	heap_t *new, *parent;
 
 	if (*root == NULL)
-		nd = NULL;
+		parent = NULL;
 	else
-		nd = nd_Add(*root);
-	new = binary_tree_node(nd, value);
+		parent = parent_address(*root);
+	new = binary_tree_node(parent, value);
 	if (new == NULL)
 		return (NULL);
-	if (nd == NULL)
+	if (parent == NULL)
 		*root = new;
-	else if (nd->left == NULL)
-		nd->left = new;
+	else if (parent->left == NULL)
+		parent->left = new;
 	else
-		nd->right = new;
-	sort_binary(&new);
+		parent->right = new;
+	sort_binary_tree(&new);
 	return (new);
 }
