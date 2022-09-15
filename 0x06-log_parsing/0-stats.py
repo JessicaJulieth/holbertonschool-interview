@@ -17,12 +17,12 @@ def metrics(codes, size):
 
 
 if __name__ == '__main__':
-    z = 0
     x = {'200': 0, '301': 0, '400': 0, '401': 0,
          '403': 0, '404': 0, '405': 0, '500': 0}
+    count = 1
+    z = 0
 
 try:
-    count = 1
     for line in sys.stdin:
         split_args = line.split()
         if len(split_args) > 6:
