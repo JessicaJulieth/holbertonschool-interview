@@ -6,9 +6,6 @@ import sys
 
 
 def metrics(codes, size):
-    """
-    Function that print stats
-    """
     print("File size: {}".format(size))
     for key, value in sorted(codes.items()):
         if value > 0:
@@ -19,9 +16,10 @@ x = {'200': 0, '301': 0, '400': 0, '401': 0,
      '403': 0, '404': 0, '405': 0, '500': 0}
 count = 1
 z = 0
+
 try:
     for line in sys.stdin:
-        split_args = line.strip().split()
+        split_args = line.split()
         if len(split_args) < 7:
             continue
         z += int(split_args[-1])
