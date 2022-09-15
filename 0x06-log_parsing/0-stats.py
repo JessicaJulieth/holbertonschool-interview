@@ -6,9 +6,9 @@ import sys
 
 
 def metrics(codes, size):
-    print("File size: {}".format(codes))
-    for key, value in sorted(size.items()):
-        if value != 0:
+    print("File size: {}".format(size))
+    for key, value in sorted(codes.items()):
+        if value > 0:
             print("{}: {}".format(key, value))
 
 
@@ -20,11 +20,11 @@ if __name__ == '__main__':
 try:
     count = 1
     for line in sys.stdin:
-        split_args = line.strip().split()
-        if len(split_args) < 7:
+        split_line = line.strip().split()
+        if len(split_line) < 7:
             continue
-        z += int(split_args[-1])
-        code_stats = split_args[-2]
+        z += int(split_line[-1])
+        code_stats = split_line[-2]
         if code_stats in x:
             x[code_stats] += 1
         if count == 10:
