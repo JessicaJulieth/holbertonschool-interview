@@ -26,12 +26,12 @@ try:
     for line in sys.stdin:
         split_args = line.split()
         if len(split_args) > 6:
-            size = split_args[-2]
+            status = split_args[-2]
             file_size = split_args[-1]
             z += int(file_size)
-            if size in x:
+            if status in x:
                 count += 1
-                x[size] += 1
+                x[status] += 1
                 if count % 10 == 0:
                     metrics(z, x)
 except KeyboardInterrupt:
