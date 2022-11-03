@@ -100,7 +100,7 @@ def init():
 
     try:
         int(args[1])
-    except:
+    except User.DoesNotExist:
         print("N must be a number")
         sys.exit(1)
 
