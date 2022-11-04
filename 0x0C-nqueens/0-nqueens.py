@@ -4,8 +4,8 @@ The N queens puzzle is the challenge of placing N non-attacking
 queens on an N×N chessboard. Write a program that solves the N queens
 problem.
 """
-
-import sys
+if __name__ == "__main__":
+    import sys
 
 
 def flldiagonals(rest, n):
@@ -92,11 +92,11 @@ def init():
     """
     N queens
     """
-    args = sys.argv
+    argc = sys.argv
 
-    if len(args) is not 2:
+    if argc != 2:
         print("Usage: nqueens N")
-        sys.exit(1)
+        exit(1)
 
     try:
         int(args[1])
@@ -110,7 +110,3 @@ def init():
 
     n = int(args[1])
     iter(n)
-
-
-if __name__ == "__main__":
-    init()
