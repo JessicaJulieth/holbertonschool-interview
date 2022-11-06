@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
         return True
 
-    def queens(z, col, arrays=[]):
+    def Nqueens(z, col, arrays=[]):
         """
         Queens
         """
@@ -59,13 +59,13 @@ if __name__ == "__main__":
                     arrays.append(z.copy())
                     del z[-1]
                 else:
-                    queens(z, col + 1)
+                    Nqueens(z, col + 1)
 
         if len(z):
             del z[-1]
         return arrays
 
-    z = queens(z, 0)
+    z = Nqueens(z, 0)
 
     for pos in z:
         print(pos)
