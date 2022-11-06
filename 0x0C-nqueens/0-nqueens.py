@@ -18,11 +18,11 @@ if __name__ == "__main__":
         sys.exit(1)
     N = sys.argv[1]
     try:
-        I = int(N)
+        In = int(N)
     except ValueError:
         print('N must be a number')
         sys.exit(1)
-    if I < 4:
+    if In < 4:
         print('N must be at least 4')
         sys.exit(1)
 
@@ -52,10 +52,10 @@ if __name__ == "__main__":
         """
         Queens
         """
-        for i in range(I):
+        for i in range(In):
             if isSafe(z, i, col):
                 z.append([i, col])
-                if col == I - 1:
+                if col == In - 1:
                     arrays.append(z.copy())
                     del z[-1]
                 else:
