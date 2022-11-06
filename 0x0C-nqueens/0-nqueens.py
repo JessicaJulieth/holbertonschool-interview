@@ -13,7 +13,7 @@ if __name__ == "__main__":
     argv = sys.argv
     argc = len(sys.argv)
 
-    if argc is not 2:
+    if argc == 1 or len(sys.argv) > 2:
         print('Usage: nqueens N')
         sys.exit(1)
     N = sys.argv[1]
