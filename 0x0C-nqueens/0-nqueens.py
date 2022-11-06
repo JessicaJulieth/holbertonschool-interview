@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-""" The N queens puzzle is the challenge of placing N non-attacking
-queens on an N.N chessboard. Write a program that solves the N queens
-problem. 
-"""
+""" Solving n queens """
 
 
 import sys
@@ -14,17 +11,17 @@ if __name__ == "__main__":
         sys.exit(1)
     N = sys.argv[1]
     try:
-        Ni = int(N)
+        N_int = int(N)
     except ValueError:
         print("N must be a number")
         sys.exit(1)
-    if Ni < 4:
+    if N_int < 4:
         print("N must be at least 4")
         sys.exit(1)
 
-    z = []
+    coords = []
 
-    def isSafe(z, row, col):
+    def isSafe(coords, row, col):
         """ Checks if queen can be placed in coord of board.
         Returns True if can, else False
         """
@@ -33,7 +30,7 @@ if __name__ == "__main__":
         diag_r = []
         diag_l = []
 
-        for square in z:
+        for square in coords:
             rows.append(square[0])
             cols.append(square[1])
             diag_r.append(square[0] + square[1])
@@ -46,24 +43,24 @@ if __name__ == "__main__":
 
         return True
 
-    def solveNqueens(z, col, arrays=[]):
+    def solveNqueens(coords, col, safe_queens=[]):
         """ Creates array of queen positions
         Returns array
         """
-        for x in range(Ni):
-            if isSafe(z, x, col):
-                z.append([x, col])
-                if col == Ni - 1:
-                    arrays.append(z.copy())
-                    del z[-1]
+        for x in range(N_int):
+            if isSafe(coords, x, col):
+                coords.append([x, col])
+                if col == N_int - 1:
+                    safe_queens.append(coords.copy())
+                    del coords[-1]
                 else:
-                    solveNqueens(z, col + 1)
+                    solveNqueens(coords, col + 1)
 
-        if len(z):
-            del z[-1]
-        return arrays
+        if len(coords):
+            del coords[-1]
+        return safe_queens
 
-    z = solveNqueens(z, 0)
+    coords = solveNqueens(coords, 0)
 
-    for squares in z:
+    for squares in coords:
         print(squares)
