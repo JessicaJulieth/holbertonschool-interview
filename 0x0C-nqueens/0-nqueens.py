@@ -19,12 +19,12 @@ if __name__ == "__main__":
     N = sys.argv[1]
     try:
         I = int(N)
-        if I < 4:
-            print('N must be at least 4')
-            sys.exit(1)
     except ValueError:
         print('N must be a number')
         sys.exit(1)
+        if I < 4:
+            print('N must be at least 4')
+            sys.exit(1)
 
     z = []
 
