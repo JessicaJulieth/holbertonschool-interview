@@ -37,7 +37,7 @@ avl_t *new_node(int n)
 }
 
 /**
- * ret_tree - Node recursive 
+ * ret_tree - Node recursive
  * @array: Array.
  * @init: Init.
  * @end: End.

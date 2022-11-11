@@ -28,4 +28,4 @@ avl_t *ret_tree(int *array, int ben, int end);
 avl_t *new_node(int n);
 void binary_tree_print(const binary_tree_t *tree);
 
-#endif 
+#endif
