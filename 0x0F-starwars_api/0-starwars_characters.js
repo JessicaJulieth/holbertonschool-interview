@@ -1,35 +1,27 @@
 #!/usr/bin/node
-
 const request = require('request');
-const argv = process.argv;
-const url = 'https://swapi-api.hbtn.io/api/films/' + argv[2];
-
-function getJson (theUrl) {
-  const options = {
-    url: theUrl,
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      'Accept-Charset': 'utf-8'
-    }
-  };
-  request(options, async function (err, res, body) {
-    if (err) {
-      console.log(err);
-    } else {
-      const json = JSON.parse(body);
-      const characters = json.characters;
-      for (const char of characters) {
-        await new Promise((resolve, reject) => {
-          request(char, function (err, func, bod) {
-            if (err) return console.error(err);
-            console.log(JSON.parse(bod).name);
-            resolve();
-          });
+const myArgs = process.argv.splice(2);
+const URL = 'https://swapi-api.hbtn.io/api/films/' + myArgs[0];
+request.get(URL, async (err, response, body) => {
+  if (err) {
+    console.log(err);
+  } else {
+    const character = JSON.parse(body).characters;
+    const characterList = characterURLs => {
+      const promise = new Promise((resolve, reject) => {
+        request.get(characterURLs, (err, response, body) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(body);
+          }
         });
-      }
-      return json;
+      });
+      return promise;
+    };
+    for (let i = 0; i < character.length; i++) {
+      const result = await characterList(character[i]);
+      console.log(JSON.parse(result).name);
     }
-  });
-}
-getJson(url);
+  }
+});
