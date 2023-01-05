@@ -81,7 +81,8 @@ binary_tree_t *last_node(heap_t *root)
 /**
  * heap_extract - Extracts the root node of a Max Binary Heap.
  * @root: Is a double pointer to the root node of the heap.
- * Return: The value stored in the root node AND If the function fails, return 0
+ * Return: The value stored in the root node
+ * AND If the function fails, return 0
  */
 int heap_extract(heap_t **root)
 {
