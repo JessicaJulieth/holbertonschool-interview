@@ -2,8 +2,8 @@
 #define HOLBERTON_H_
 
 #include <stdlib.h>
-#define ERROR ("Error")
-#define EXIT_ERROR()  \
+#include <unistd.h>
+#include <stdio.h>
 
 int _putchar(char c);
 
