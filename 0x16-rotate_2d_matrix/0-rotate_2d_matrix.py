@@ -5,7 +5,7 @@
 
 
 def rotate_2d_matrix(matrix):
-    """ Rotate  matrix 
+    """ Rotate  matrix
     """
     matrix.reverse()
     matrix_temp = matrix.copy()
